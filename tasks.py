@@ -11,8 +11,8 @@ class Tasks:
             if task_name == task:
                 self.tasks_list.remove(task)
 
-    def delete_all_task(self):
-        self.tasks_list.clear()
+    #def delete_all_task(self):
+    #    self.tasks_list.clear()
 
 
 if __name__ == '__main__':
