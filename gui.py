@@ -44,15 +44,19 @@ class MainWindow(QtWidgets.QMainWindow):
     def setup_connections(self):
         self.lne_task_name.returnPressed.connect(self.return_pressed)
         self.btn_del_task.clicked.connect(self.delete_all_task)
+        self.lst_tasks.itemDoubleClicked.connect(self.delete_item)
 
     def return_pressed(self):
         text = self.lne_task_name.text()
         self.lst_tasks.addItem(text)
         self.lne_task_name.clear()
-        # TODO : ajouter effacer la ligne a chaque entree
 
     def delete_all_task(self):
         self.lst_tasks.clear()
+
+    def delete_item(self, item):
+        row = self.lst_tasks.row(item)
+        self.lst_tasks.takeItem(row)
 
 
 app = QApplication([])
