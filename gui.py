@@ -42,21 +42,19 @@ class MainWindow(QtWidgets.QMainWindow):
         self.main_Layout.addWidget(self.btn_del_task)
 
     def setup_connections(self):
-        self.lne_task_name.returnPressed.connect(self.return_pressed)
+        self.lne_task_name.returnPressed.connect(self.add_task)
         self.btn_del_task.clicked.connect(self.delete_all_task)
-        self.lst_tasks.itemDoubleClicked.connect(self.delete_item)
+        self.lst_tasks.itemDoubleClicked.connect(self.delete_task)
 
-    def return_pressed(self):
-        text = self.lne_task_name.text()
-        self.lst_tasks.addItem(text)
+    def add_task(self):
+        self.lst_tasks.addItem(self.lne_task_name.text())
         self.lne_task_name.clear()
 
     def delete_all_task(self):
         self.lst_tasks.clear()
 
-    def delete_item(self, item):
-        row = self.lst_tasks.row(item)
-        self.lst_tasks.takeItem(row)
+    def delete_task(self, item):
+        self.lst_tasks.takeItem(self.lst_tasks.row(item))
 
 
 app = QApplication([])
